@@ -4,8 +4,12 @@ const fs = require('fs');
 
 const fileName = "./develop/readme.md";
 
-const questions = [
-    
+const technologies = [
+    "node.js",
+    "jQuery",
+    "Expresss",
+    "React",
+    "Bootstrap"    
 ];
 
 function writeToFile(fileName, data) {
@@ -25,25 +29,65 @@ function init() {
         },
         {
             type: "input",
+            name: "repourl",
+            message: "What is the repository URL?"
+        },
+        {
+            type: "input",
+            name: "license",
+            message: "How is the project licensed?"
+        },
+        {
+            type: "input",
             name: "description",
             message: "Describe the project"
         },
         {
+            type: "checkbox",
+            name: "technologies",
+            choices: [
+                technologies[0],
+                technologies[1],
+                technologies[2],
+                technologies[3],
+                technologies[4],         
+              ]
+        },        
+        {
             type: "input",
-            name: "githuburl",
-            message: "What is your GitHub profile URL?"
+            name: "intro",
+            message: "Write an introduction to the project"
         },
         {
             type: "input",
-            name: "linkedinurl",
-            message: "What is your LinkedIn profile URL?"
+            name: "contributors",
+            message: "Who are the project contributors?"
         }
-    ]).then(response => {
+        
+    ]).then(response => {        
         let file = `
             # ${response.title}
-
+            ___
             ## Project Description
             ${response.description}
+            ___
+            ## Table of Contents
+            1. [Introduction](#introduction)
+            2. [Technologies](#technologies)
+            3. [Contributors](#contributors)
+            4. [License](#license)
+            ___
+            ## Introduction
+            ${response.intro}
+            ___
+            ## Technologies
+            ${response.technologies}
+            ___
+            ## Contributors
+            ${response.contributors}
+            ___
+            ## License
+            ${response.license}
         
         `;
         console.log(file);
