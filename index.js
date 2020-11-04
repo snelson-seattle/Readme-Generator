@@ -1,17 +1,35 @@
+const {render} = require("mustache");
 const inquirer = require('inquirer');
-const markdown = require('markdown-js');
 const fs = require('fs');
 
 
 const fileName = "./develop/README.md";
 
-const technologies = [
-    "node.js",
-    "jQuery",
-    "Expresss",
-    "React",
-    "Bootstrap"    
+const questions = [
+        {
+            type: "input",
+            name: "title",
+            message: "What is the name of the project?"
+        },
+        {
+            type: "input",
+            name: "author",
+            message: "What is your name?"
+        },
+        {
+            type: "input",
+            name: "description",
+            message: "Describe the project"
+        },
+        {
+            type: "input",
+            name: "license",
+            message: "How is this project licensed?"
+        }
+
 ];
+
+
 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
@@ -21,80 +39,26 @@ function writeToFile(fileName, data) {
     });
 }
 
-function init() {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "title",
-            message: "What is the name of this project?"
-        },
-        {
-            type: "input",
-            name: "repourl",
-            message: "What is the repository URL?"
-        },
-        {
-            type: "input",
-            name: "license",
-            message: "How is the project licensed?"
-        },
-        {
-            type: "input",
-            name: "description",
-            message: "Describe the project"
-        },
-        {
-            type: "checkbox",
-            name: "technologies",
-            choices: [
-                technologies[0],
-                technologies[1],
-                technologies[2],
-                technologies[3],
-                technologies[4],         
-              ]
-        },        
-        {
-            type: "input",
-            name: "intro",
-            message: "Write an introduction to the project"
-        },
-        {
-            type: "input",
-            name: "contributors",
-            message: "Who are the project contributors?"
-        }
-        
-    ]).then(response => {  
-        response = JSON.stringify(response);      
-        let file = `
-            # ${response.title}
-            ___
-            ## Project Description
-            ${response.description}
-            ___
-            ## Table of Contents
-            1. [Introduction](#introduction)
-            2. [Technologies](#technologies)
-            3. [Contributors](#contributors)
-            4. [License](#license)
-            ___
-            ## Introduction
-            ${response.intro}
-            ___
-            ## Technologies
-            ${response.technologies}
-            ___
-            ## Contributors
-            ${response.contributors}
-            ___
-            ## License
-            ${response.license}
-        
-        `;
-        file = markdown.makeHtml(file);
-        writeToFile(fileName, file);
-    });
+async function askQuestions(questions){
+    let answers = [];
+    for(let i=0; i<questions.length; i++){
+        let answer = await inquirer.prompt([
+            {
+                type: questions[i]["type"],
+                name: questions[i]["name"],
+                message: questions[i]["message"]
+            }
+        ]);
+        answers.push(answer);
+    } 
+    return answers;
+}
+
+
+async function init() {
+   let results = await askQuestions(questions);
+   console.log(results);
+   
 }
 
 init();

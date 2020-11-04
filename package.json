@@ -11,6 +11,6 @@
   "dependencies": {
     "dotenv": "^8.0.0",
     "inquirer": "^6.5.2",
-    "markdown-js": "0.0.4"
+    "mustache": "^4.0.1"
   }
 }
