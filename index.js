@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
+const markdown = require('markdown-js');
 const fs = require('fs');
 
 
-const fileName = "./develop/readme.md";
+const fileName = "./develop/README.md";
 
 const technologies = [
     "node.js",
@@ -64,7 +65,8 @@ function init() {
             message: "Who are the project contributors?"
         }
         
-    ]).then(response => {        
+    ]).then(response => {  
+        response = JSON.stringify(response);      
         let file = `
             # ${response.title}
             ___
@@ -90,7 +92,7 @@ function init() {
             ${response.license}
         
         `;
-        console.log(file);
+        file = markdown.makeHtml(file);
         writeToFile(fileName, file);
     });
 }
