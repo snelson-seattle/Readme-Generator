@@ -1,28 +1,26 @@
-# {title}
-### Author: {author}
+# {{title}}
+### Author: {{author}} 
 ## Project Description
-{description}
+{{description}}
 ## Table of Contents
 1. [Installation](#intallation)
 2. [Usage](#usage)
 3. [Contributors](#contributors)
-4. [Tests](#tests)
-5. [Questions](#questions)
-6. [License](#license)
+4. [Technologies](#technologies)
+5. [Tests](#tests)
+6. [Questions](#questions)
+7. [License](#license)
+8. [Repository](#repository)
 
 ## Installation
-To start using {title}, you must first clone the respository.
-```
-# Clone the repository
-$ git clone {repourl}
-# Additional instructions here....
-```
 ## Usage
-// Document how to use the application here...
 ## Contributors
-{contributors}
+{{contributors}}
+## Technologies
 ## Tests
 ## Questions
 ## License
-{license}
+{{license}}
+## Repository
+[{{{repourl}}}]({{{repourl}}})
 

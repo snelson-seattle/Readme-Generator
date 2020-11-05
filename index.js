@@ -1,6 +1,7 @@
-const {render} = require("mustache");
+let {render} = require("mustache");
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require("path");
 
 // Inquirer Question List
 const questions = [
@@ -21,8 +22,13 @@ const questions = [
         },
         {
             type: "input",
+            name: "username",
+            message: "What is your GitHub username?"
+        },
+        {
+            type: "input",
             name: "repourl",
-            message: "What is the URL of the project repository?"
+            message: "What is the URL of the project's GitHub repository?"
         },
         {
             type: "input",
@@ -36,6 +42,16 @@ const questions = [
         }
 ];
 
+// Markdown Template
+let template = fs.readFileSync("./template.md").toString();
+let templateData = {
+    title: "",
+    author: "",
+    description: "",
+    repourl: "",
+    contributors: "",
+    license: ""
+}
 
 // Functions
 async function askQuestions(questions){
@@ -53,11 +69,22 @@ async function askQuestions(questions){
     return answers;
 }
 
-
-async function init() {
-   let results = await askQuestions(questions);
-   
-   
+async function init() {  
+    let results = await askQuestions(questions); 
+    console.log(results);
+    for(let i=0; i<results.length; i++){
+        if(templateData.hasOwnProperty(Object.keys(results[i]))){
+            templateData[Object.keys(results[i])] = Object.values(results[i]).pop();
+        }
+    }
+    let output = render(template, templateData);
+    fs.writeFile(`./readmes/${templateData.title}.md`, output, err => {
+        if(err){
+            console.log("Error: " + err);
+        }
+    });
+    
+    
 }
 
 init();
