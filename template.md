@@ -4,7 +4,7 @@
 {description}
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Getting Started](#getting started)
+2. [Getting&nbsp;Started](#getting started)
 3. [](#)
 4. [Technologies](#technologies)
 5. [License](#license)
