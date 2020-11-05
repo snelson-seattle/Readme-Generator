@@ -1,4 +1,5 @@
-let {render} = require("mustache");
+// Import javascript libraries
+const {render} = require("mustache");
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require("path");
@@ -22,6 +23,11 @@ const questions = [
         },
         {
             type: "input",
+            name: "executable",
+            message: "What is the node.js entry point of your application? (ex. app.js, index.js)"
+        },
+        {
+            type: "input",
             name: "username",
             message: "What is your GitHub username?"
         },
@@ -39,6 +45,11 @@ const questions = [
             type: "input",
             name: "license",
             message: "How is this project licensed?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your contact email for this project?"
         }
 ];
 
@@ -47,6 +58,9 @@ let template = fs.readFileSync("./template.md").toString();
 let templateData = {
     title: "",
     author: "",
+    email: "",
+    executable: "",
+    username: "",
     description: "",
     repourl: "",
     contributors: "",
@@ -57,6 +71,7 @@ let templateData = {
 async function askQuestions(questions){
     let answers = [];
     for(let i=0; i<questions.length; i++){
+        // loop through the array of inquirer questions listed above
         let answer = await inquirer.prompt([
             {
                 type: questions[i]["type"],
@@ -70,15 +85,18 @@ async function askQuestions(questions){
 }
 
 async function init() {  
-    let results = await askQuestions(questions); 
-    console.log(results);
+    let results = await askQuestions(questions);  // results is an array of objects
+
     for(let i=0; i<results.length; i++){
         if(templateData.hasOwnProperty(Object.keys(results[i]))){
+            // Find the keyname in templateData that matches keyname in results and then assign the value from results[keyname] to templateData[keyname]
             templateData[Object.keys(results[i])] = Object.values(results[i]).pop();
         }
     }
-    let output = render(template, templateData);
-    fs.writeFile(`./readmes/${templateData.title}.md`, output, err => {
+    let output = render(template, templateData); // Use mustache.js to render the content of readme.md file
+
+    // Create the readme.md file
+    fs.writeFile("./readmes/readme.md", output, err => {
         if(err){
             console.log("Error: " + err);
         }
