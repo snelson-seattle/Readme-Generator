@@ -23,8 +23,18 @@ const questions = [
         },
         {
             type: "input",
+            name: "repourl",
+            message: "What is the URL of the project repository?"
+        },
+        {
+            type: "input",
             name: "license",
             message: "How is this project licensed?"
+        },
+        {
+            type: "input",
+            name: "intro",
+            message: "Write an introduction for your project."
         }
 
 ];
