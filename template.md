@@ -4,9 +4,9 @@
 {description}
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Getting&nbsp;Started](#getting started)
-3. [](#)
-4. [Technologies](#technologies)
+2. [Getting_Started](#getting started)
+3. [Technologies](#technologies)
+4. [Contributors](#contributors)
 5. [License](#license)
 
 
@@ -21,6 +21,6 @@ $ git clone {repourl}
 # Additional instructions here....
 ```
 ## Technologies
-
+## Contributors
 ## License
 {license}
