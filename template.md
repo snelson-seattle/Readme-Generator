@@ -3,24 +3,26 @@
 ## Project Description
 {description}
 ## Table of Contents
-1. [Introduction](#introduction)
-2. [Getting_Started](#getting_started)
-3. [Technologies](#technologies)
-4. [Contributors](#contributors)
-5. [License](#license)
+1. [Installation](#intallation)
+2. [Usage](#usage)
+3. [Contributors](#contributors)
+4. [Tests](#tests)
+5. [Questions](#questions)
+6. [License](#license)
 
-
-
-## Introduction
-{intro}
-## Getting_Started
+## Installation
 To start using {title}, you must first clone the respository.
 ```
 # Clone the repository
 $ git clone {repourl}
 # Additional instructions here....
 ```
-## Technologies
+## Usage
+// Document how to use the application here...
 ## Contributors
+{contributors}
+## Tests
+## Questions
 ## License
 {license}
+

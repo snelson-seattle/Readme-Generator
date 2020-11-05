@@ -2,9 +2,7 @@ const {render} = require("mustache");
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-
-const fileName = "./develop/README.md";
-
+// Inquirer Question List
 const questions = [
         {
             type: "input",
@@ -14,7 +12,7 @@ const questions = [
         {
             type: "input",
             name: "author",
-            message: "What is your name?"
+            message: "Who is the project author?"
         },
         {
             type: "input",
@@ -28,27 +26,18 @@ const questions = [
         },
         {
             type: "input",
-            name: "license",
-            message: "How is this project licensed?"
+            name: "contributors",
+            message: "Who are the project contributors?"
         },
         {
             type: "input",
-            name: "intro",
-            message: "Write an introduction for your project."
+            name: "license",
+            message: "How is this project licensed?"
         }
-
 ];
 
 
-
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => {
-        if(err){
-            console.log("Error: " + err);
-        }
-    });
-}
-
+// Functions
 async function askQuestions(questions){
     let answers = [];
     for(let i=0; i<questions.length; i++){
@@ -67,7 +56,7 @@ async function askQuestions(questions){
 
 async function init() {
    let results = await askQuestions(questions);
-   console.log(results);
+   
    
 }
 
