@@ -4,9 +4,9 @@
 {description}
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Getting Started](#getting started)
+2. [Getting Started][#getting started]
 3. [](#)
-4. []
+4. [Technologies](#technologies)
 5. [License](#license)
 
 
@@ -14,5 +14,13 @@
 ## Introduction
 {intro}
 ## Getting Started
+To start using {title}, you must first clone the respository.
+```
+# Clone the repository
+$ git clone {repourl}
+# Additional instructions here....
+```
+## Technologies
+
 ## License
 {license}
